@@ -1,8 +1,4 @@
 import pandas as pd
-import json
-
-
-
 
 # this function receive a Json with the answer of the chatbot return a dictionary with the list of players
 def player_request(chatGPT_answer):
@@ -72,14 +68,3 @@ def player_request(chatGPT_answer):
     df_recomendations_dict = df_recomendations.loc[players_index, columns].to_dict(orient='records')
 
     return df_recomendations_dict
-
-
-# JSON example
-chatGPT_answer = '{ "valor": 30000000, "posiciones": ["delantero", "centrocampista"] }'
-# convert chatGPT_answer string to JSON
-chatGPT_answer = json.loads(chatGPT_answer)
-
-answer_dict = player_request(chatGPT_answer)
-
-# print the first 5 records of the dictionary
-print(answer_dict[:5])
