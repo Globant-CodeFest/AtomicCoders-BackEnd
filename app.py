@@ -22,15 +22,21 @@ def get_result_pront():
 
     app.logger.info('GET ==> /api/v1/guru-pront?client-question=%s ==> Pending...', client_question_query)
 
-    result = prompt.chat_with_gpt(client_question_query)
+    dictionary_result = []
 
-    app.logger.debug('Prompt Result: %s', result)
+    try:
+        result = prompt.chat_with_gpt(client_question_query)
 
-    result_to_dictionary = json.loads(result)
+        app.logger.debug('Prompt Result: %s', result)
 
-    dictionary_result = data_extraction.player_request(result_to_dictionary)
+        result_to_dictionary = json.loads(result)
 
-    app.logger.info('GET ==> /api/v1/guru-pront?client-question=%s ==> 200')
+        dictionary_result = data_extraction.player_request(result_to_dictionary)
+
+    except Exception:
+        app.logger.error('Promp fails')
+
+    app.logger.info('GET ==> /api/v1/guru-pront ==> 200')
 
     return jsonify(dictionary_result)
 
