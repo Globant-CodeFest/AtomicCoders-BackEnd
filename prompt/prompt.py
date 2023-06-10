@@ -1,5 +1,5 @@
 import requests
-import json
+
 
 def chat_with_gpt(message):
     url = "https://api.openai.com/v1/chat/completions"
@@ -7,11 +7,20 @@ def chat_with_gpt(message):
         "Authorization": "Bearer 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",
         "Content-Type": "application/json"
     }
+
+    question = "Desde ahora eres un asistente virtual que responde preguntas sobre el FIFA 21 \ " \
+               "Vas a identificar los siguientes items de un texto: \ " \
+               " - Valor económico del jugador (devolver un valor numérico)" \
+               " - Posiciones del jugador buscado (una lista que devuelve uno o más de los siguientes valores: delantero, centrocampista, defensor, arquero)" \
+               "El texto está delimitado en \"\"\" \"\"\"." \
+               "El formato de respuesta en JSON sin salto de líneas con las claves \"valor\", \"posiciones\"." \
+               "Si la información no está presente devolver el valor vacío." \
+               " Texto: \"\"\""+message+"\"\"\"\""
+
     data = {
         "model": "gpt-3.5-turbo",
         "messages": [
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": message}
+            {"role": "system", "content": question},
         ]
     }
 
@@ -20,12 +29,3 @@ def chat_with_gpt(message):
 
     messages = response_data["choices"][0]["message"]["content"]
     return messages
-
-# Ejemplo de uso
-api_key = "YOUR_API_KEY"
-
-mensaje = "Dame a los mejores jugadores del mundo en json"
-
-response = chat_with_gpt(mensaje)
-response_json = json.dumps(response)  # Convertir la lista de mensajes a JSON
-print(response_json)
