@@ -11,11 +11,23 @@ def player_request(chatGPT_answer):
 
     # to this prototype we will generalize the categories of the players positions
     general_positions = {
-        'delantero': ['CF', 'ST'],
-        'centrocampista': ['CM', 'CAM', 'CDM'],
-        'defensa': ['CB', 'RB', 'LB', 'RWB', 'LWB'],
-        'portero': ['GK'],
-        'extremo': ['LW', 'RW', 'LM', 'RM']
+        'extremo izquierdo': ['LW'],
+        'Centrocampista izquierdo': ['LM'],
+        'centro delantero': ['CF'],
+        'centrocampista central': ['CM'],
+        'defensor derecho': ['RB'],
+        'extremo derecho': ['RW'],
+        'defensor central': ['CB'],
+        'delantero': ['ST'],
+        'arquero': ['GK'],
+        'defensor izquierdo': ['LB'],
+        'centrocampista derecho': ['CM'],
+        'lateral derecho': ['RWD'],
+        'lateral izquierdo': ['LWD'],
+        'centrocampista ofensivo central': ['CAM'],
+        'centrocampista defensivo central': ['CDM']
+
+
     }
 
 
@@ -75,7 +87,7 @@ def player_request(chatGPT_answer):
 
 
 # JSON example
-chatGPT_answer = '{ "valor": 30000000, "posiciones": ["delantero", "centrocampista"] }'
+chatGPT_answer = '{ \n"valor": 30000000, \n"posiciones": ["extremo izquierdo"] }'
 # convert chatGPT_answer string to JSON
 chatGPT_answer = json.loads(chatGPT_answer)
 
