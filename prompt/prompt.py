@@ -11,7 +11,11 @@ def chat_with_gpt(message):
     question = "Desde ahora eres un asistente virtual que responde preguntas sobre el FIFA 21 \ " \
                "Vas a identificar los siguientes items de un texto: \ " \
                " - Valor económico del jugador (devolver un valor numérico)" \
-               " - Posiciones del jugador buscado (una lista que devuelve uno o más de los siguientes valores: delantero, centrocampista, defensor, arquero)" \
+               " - Posiciones del jugador buscado (una lista que devuelve uno o más de los siguientes valores: " \
+               "'extremo izquierdo','Centrocampista izquierdo','centro delantero','centrocampista central'," \
+               "'defensor derecho','extremo derecho','defensor central','delantero','arquero','defensor izquierdo'," \
+               "'centrocampista derecho','lateral derecho','lateral izquierdo','centrocampista ofensivo central'," \
+               "'centrocampista defensivo central)" \
                "El texto está delimitado en \"\"\" \"\"\"." \
                "El formato de respuesta en JSON sin salto de líneas con las claves \"valor\", \"posiciones\"." \
                "Si la información no está presente devolver el valor vacío." \

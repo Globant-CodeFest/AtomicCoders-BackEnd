@@ -2,11 +2,15 @@ import logging
 import json
 
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import data_extraction
 
 from prompt import prompt
 
 app = Flask(__name__)
+
+CORS(app)
+
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -26,7 +30,7 @@ def get_result_pront():
 
     dictionary_result = data_extraction.player_request(result_to_dictionary)
 
-    app.logger.info('GET ==> /api/v1/guru-pront?client-question=%s ==> Response %s', client_question_query, result)
+    app.logger.info('GET ==> /api/v1/guru-pront?client-question=%s ==> 200')
 
     return jsonify(dictionary_result)
 
