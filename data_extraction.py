@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 
 
 
@@ -74,8 +75,11 @@ def player_request(chatGPT_answer):
 
 
 # JSON example
-chatGPT_answer = { "valor": 30000000, "posiciones": ["delantero", "centrocampista"] }
+chatGPT_answer = '{ "valor": 30000000, "posiciones": ["delantero", "centrocampista"] }'
+# convert chatGPT_answer string to JSON
+chatGPT_answer = json.loads(chatGPT_answer)
 
 answer_dict = player_request(chatGPT_answer)
 
-print(answer_dict)
+# print the first 5 records of the dictionary
+print(answer_dict[:5])
