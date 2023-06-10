@@ -1,6 +1,6 @@
 import requests
+import json
 
-message = "tengo 2000000 EUR quiero al delantero mas veloz para mi equipo?"
 def chat_with_gpt(message):
     url = "https://api.openai.com/v1/chat/completions"
     headers = {
@@ -18,12 +18,14 @@ def chat_with_gpt(message):
     response = requests.post(url, headers=headers, json=data)
     response_data = response.json()
 
-    assistant_response = response_data["choices"][0]["message"]["content"]
-    return assistant_response
+    messages = response_data["choices"][0]["message"]["content"]
+    return messages
 
 # Ejemplo de uso
 api_key = "YOUR_API_KEY"
-user_input = input("User: ")
 
-response = chat_with_gpt(user_input)
-print("ChatGPT:", response)
+mensaje = "Dame a los mejores jugadores del mundo en json"
+
+response = chat_with_gpt(mensaje)
+response_json = json.dumps(response)  # Convertir la lista de mensajes a JSON
+print(response_json)
